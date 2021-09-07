@@ -4,7 +4,7 @@ const sliderContainer = document.getElementById('slider-container');
 const createSliderBtn = document.getElementById('create-slide-btn');
 const indicators = document.getElementById('indicators');
 
-// selected images
+// initial variables
 let selectedImages = [];
 let activeSlideIndex = 0;
 let timer;
@@ -33,11 +33,16 @@ const selectedImage = (event, image) => {
   const index = selectedImages.indexOf(image);
   const isImageExist = index === -1 ? false : true;
 
+  // add or remove slider item depends on condition
   if (isImageExist) {
     selectedImages.splice(index, 1);
-    element.className = 'cursor-pointer';
+    element.classList.remove('border');
+    element.classList.remove('border-2');
+    element.classList.remove('p-1');
   } else {
-    element.className = 'cursor-pointer border border-2 p-1';
+    element.classList.add('border');
+    element.classList.add('border-2');
+    element.classList.add('p-1');
     selectedImages.push(image);
   }
 };
@@ -55,7 +60,7 @@ const displayImages = (images) => {
     .map((image) => {
       return `
       <div onclick="selectedImage(event,'${image.webformatURL}')">
-        <img class="cursor-pointer" src="${image.webformatURL}" />
+        <img class="cursor-pointer w-full h-52 object-cover" src="${image.webformatURL}" />
       </div>
       `;
     })
@@ -65,7 +70,6 @@ const displayImages = (images) => {
 // handle smage search
 const handleImageSearch = async (event) => {
   event.preventDefault();
-
   // get search image input
   const searchImageInput = document.getElementById('search-image-input');
   const searchImageInputVal = searchImageInput.value.trim();
@@ -117,43 +121,58 @@ const createSlide = () => {
   sliderContainer.innerHTML = selectedImages
     .map((image) => {
       return `
-      <img class="slider-item transition-all absolute  top-0 left-0 w-full opacity-0 invisible" src="${image}"/>
+      <img class="slider-item transition-all absolute top-0 left-0 w-full h-52 object-cover opacity-0 invisible" src="${image}"/>
       `;
     })
     .join('');
 
+  // chnage slide
   changeSlide(activeSlideIndex);
+  // start timer
   startTimer();
 };
 
+// timer
 const startTimer = () => {
   return (timer = setInterval(() => {
     activeSlideIndex++;
     if (activeSlideIndex === selectedImages.length) activeSlideIndex = 0;
     changeSlide(activeSlideIndex);
-  }, 6000));
+  }, 5000));
 };
 
+// chnage item
 const chnageItem = (changeIndex) => {
   activeSlideIndex = activeSlideIndex + changeIndex;
+
+  //validate
   if (activeSlideIndex < 0) {
     activeSlideIndex = selectedImages.length - 1;
   }
   if (activeSlideIndex >= selectedImages.length) {
     activeSlideIndex = 0;
   }
+
+  // chnage slide
   changeSlide(activeSlideIndex);
+
+  // first clear timer then start again from 0
   clearInterval(timer);
   startTimer();
 };
 
+// change slide
 const changeSlide = (index) => {
+  // get  all slider item
   const sliderItems = document.getElementsByClassName('slider-item');
+
   // hide all image
   for (const item of sliderItems) {
     item.classList.add('opacity-0');
     item.classList.add('invisible');
   }
+
+  // show active index image
   sliderItems[index].classList.remove('opacity-0');
   sliderItems[index].classList.remove('invisible');
 };
