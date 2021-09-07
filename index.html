@@ -4,14 +4,90 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fancy Slider - Make Awesome Slide</title>
+    <title>Fancy Slider - Make Your Fancy Slider</title>
     <!-- Tailwind CSS -->
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body class="bg-gray-800 text-white">
+    <main>
+      <!-- search area -->
+      <section class="py-10">
+        <div class="container mx-auto px-5">
+          <h4 class="text-md font-semibold mb-3">
+            Search Image for create slider
+          </h4>
+          <form
+            id="search-image-form"
+            action=""
+            class="w-96 flex justify-between items-center bg-gray-700 rounded"
+          >
+            <input
+              id="search-image-input"
+              class="bg-transparent flex-grow focus:outline-none p-3"
+              type="text"
+              placeholder="Type image category"
+            />
+            <button class="p-3" type="submit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </section>
+      <!-- /search area -->
+
+      <!-- create slide area -->
+      <section class="pb-10">
+        <div class="container mx-auto px-5">
+          <button id="create-slide-btn" class="p-3 bg-gray-700 rounded hidden">
+            Create Slide
+          </button>
+        </div>
+      </section>
+      <!-- /create slide area -->
+
+      <!-- slide area -->
+      <section>
+        <div class="container mx-auto px-5">
+          <div id="slider-main">
+            <!-- indicators -->
+            <div id="indicators" class="hidden">
+              <button onclick="chnageItem(-1)">Prev</button>
+              <button onclick="chnageItem(+1)">Next</button>
+            </div>
+            <!-- slider container -->
+            <div id="slider-container" class="relative"></div>
+          </div>
+        </div>
+      </section>
+      <!-- /slide area -->
+
+      <!-- images area -->
+      <section>
+        <div class="container mx-auto px-5">
+          <div id="images-container" class="grid grid-cols-3 gap-3"></div>
+        </div>
+      </section>
+      <!-- /images area -->
+    </main>
+
     <!-- JS -->
     <script src="js/index.js"></script>
   </body>
