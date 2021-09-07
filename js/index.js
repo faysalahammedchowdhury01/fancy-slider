@@ -121,7 +121,7 @@ const createSlide = () => {
   sliderContainer.innerHTML = selectedImages
     .map((image) => {
       return `
-      <img class="slider-item transition-all absolute top-0 left-0 w-full h-52 object-cover opacity-0 invisible" src="${image}"/>
+      <img class="slider-item transition-all absolute top-0 left-0 w-full h-72 object-cover opacity-0 invisible" src="${image}"/>
       `;
     })
     .join('');

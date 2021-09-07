@@ -24,7 +24,15 @@
           <form
             id="search-image-form"
             action=""
-            class="w-96 flex justify-between items-center bg-gray-700 rounded"
+            class="
+              w-96
+              max-w-full
+              flex
+              justify-between
+              items-center
+              bg-gray-700
+              rounded
+            "
           >
             <input
               id="search-image-input"
@@ -82,7 +90,16 @@
       <!-- images area -->
       <section>
         <div class="container mx-auto px-5">
-          <div id="images-container" class="grid grid-cols-3 gap-3"></div>
+          <div
+            id="images-container"
+            class="
+              grid grid-cols-1
+              sm:grid-cols-2
+              lg:grid-cols-3
+              xl:grid-cols-4
+              gap-3
+            "
+          ></div>
         </div>
       </section>
       <!-- /images area -->
